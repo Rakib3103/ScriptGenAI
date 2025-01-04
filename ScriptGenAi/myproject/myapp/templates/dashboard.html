@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Welcome, {{ current_user.username }}!</h2>
+        <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+        
+        <h3>Customer List</h3>
+        <ul class="customer-list">
+            {% for customer in customers %}
+                <li>
+                    <a href="{% url 'customer_details' customer.id %}">{{ customer.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
